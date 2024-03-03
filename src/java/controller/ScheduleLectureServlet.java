@@ -5,12 +5,9 @@
 package controller;
 
 import database.LessionDAO;
-import database.StatusDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -19,7 +16,6 @@ import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import model.Lecture;
 import model.Lession;
 import model.User;
@@ -82,8 +78,6 @@ public class ScheduleLectureServlet extends AuthenticationServlet {
         ArrayList<Lession> list7 = lessionDAO.selectLessionByIdLectureAndDay(lecture.getId(), date7 + "");
         ArrayList<Lession> list8 = lessionDAO.selectLessionByIdLectureAndDay(lecture.getId(), date8 + "");
         req.setAttribute("week", week);
-        req.setAttribute("day", day);
-        req.setAttribute("month", month);
         req.setAttribute("year", year);
         req.setAttribute("list2", list2);
         req.setAttribute("list3", list3);
