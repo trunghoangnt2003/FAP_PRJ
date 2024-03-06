@@ -28,7 +28,7 @@
     <body>
 
         <%
-String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
                 + request.getContextPath();
         %>
         <jsp:include page="header.jsp"></jsp:include>

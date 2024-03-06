@@ -118,6 +118,25 @@ public class StatusDAO {
         return result;
     }
 
+    public int selectCountStatusAbsent(String idStudent) {
+        int result = 0;
+        try {
+            Connection connection = JDBC.getConnection();
+            String sql = "select count(*) as count\n"
+                    + "from [dbo].[Status]\n"
+                    + "where idStudent=? and status = -1;";
+            PreparedStatement preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, idStudent);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                result = resultSet.getInt("count");
+            }
+            JDBC.closeConnection(connection);
+        } catch (Exception e) {
+        }
+        return result;
+    }
+
     public ArrayList<Status> selectByIdLession(int id) {
         ArrayList<Status> list = new ArrayList<>();
         try {
@@ -134,9 +153,9 @@ public class StatusDAO {
                 int idStatus = rs.getInt(1);
                 String idStudent = rs.getString(2);
                 int idLession = rs.getInt(3);
-                
+
                 int status = rs.getInt(4);
-                
+
                 java.sql.Timestamp date = rs.getTimestamp(5);
 
                 LessionDAO lessionDAO = new LessionDAO();

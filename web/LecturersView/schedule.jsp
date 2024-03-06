@@ -6,11 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.Lession"%>
-<%@page import="model.Group"%>
-<%@page import="model.Course"%>
-<%@page import="model.Room"%>
+
 <!DOCTYPE html>
 <html>
     <head>
