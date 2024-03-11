@@ -4,6 +4,7 @@
  */
 package controller;
 
+
 import database.StudentDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -31,7 +32,6 @@ public class ResetPassWord extends HttpServlet{
             + "or you have not made the request";
         Email send = new Email();
         send.sendEmail(tile, content, email);
-
     
     }
 

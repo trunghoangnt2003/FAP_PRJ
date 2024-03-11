@@ -52,6 +52,14 @@
         <servlet-name>ChangePassWord</servlet-name>
         <servlet-class>controller.ChangePassWord</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Payment</servlet-name>
+        <servlet-class>controller.onlinepay.ajaxServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>controller.onlinepay.PaymentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -103,5 +111,13 @@
     <servlet-mapping>
         <servlet-name>ChangePassWord</servlet-name>
         <url-pattern>/changePass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Payment</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/checkPayment</url-pattern>
     </servlet-mapping>
 </web-app>

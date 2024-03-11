@@ -33,6 +33,9 @@
             <div class="container" style="height: 600px">
                 <ul class="list-group list-group-light">
                     <li class="list-group-item px-3 border-0 active text-center" aria-current="true">
+                        Số tiền trong FAP : ${requestScope.money}
+                    </li>
+                    <li class="list-group-item px-3 border-0 active text-center" aria-current="true">
                         Thông tin lớp học và điểm danh
                     </li>
                 <%
@@ -55,6 +58,7 @@
                 <li class="list-group-item px-3 border-0"><a href="student/schedule?year=<%=monday.getYear()%>&week=<%=day%>%2F<%=month%>">Thời khóa biểu</a></li>
                 <li class="list-group-item px-3 border-0"><a href="student/score?idSemester=3">Điểm số</a></li>
                 <li class="list-group-item px-3 border-0"><a href="student/attReport?idSemester=3">Trạng Thái Điểm Danh</a></li>
+                <li class="list-group-item px-3 border-0"><a href="payment">Nạp tiền vào FAP</a></li>
 
             </ul>  
         </div>

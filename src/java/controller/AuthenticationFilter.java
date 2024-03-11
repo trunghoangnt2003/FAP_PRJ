@@ -36,7 +36,7 @@ public class AuthenticationFilter implements Filter {
         // Kiểm tra đường dẫn yêu cầu
         String path = httpRequest.getRequestURI();
         System.out.println(path);
-        if (path.equals("/fap/resetPassWod")||path.equals("/fap/changePass")||path.contains("/fap/img")||path.equals("/fap/login")||path.equals("/fap/google") || path.equals("/fap/css") || path.equals("/fap/js")) {
+        if (path.equals("/fap/resetPassWod")||path.equals("/fap/changePass")||path.contains("/fap/img")||path.equals("/fap/login")||path.equals("/fap/google") || path.contains("/fap/css") || path.contains("/fap/js")) {
             chain.doFilter(request, response);
             return;
         }

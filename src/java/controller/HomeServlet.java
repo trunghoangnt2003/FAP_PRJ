@@ -4,12 +4,16 @@
  */
 package controller;
 
+import database.PaymentDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Locale;
 import model.User;
 
 /**
@@ -34,6 +38,12 @@ public class HomeServlet extends AuthenticationServlet{
         String url = "";
         if(user.getEmail().contains("fpt")){
             url = "StudentView/HomeOfStudent.jsp";
+            PaymentDAO paymentDAO = new PaymentDAO();
+            long money = paymentDAO.getMoneyByIdStudent(user.getId());
+            Locale locale = new Locale("vi","VN");
+            NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+            numberFormat.setRoundingMode(RoundingMode.HALF_UP);
+            req.setAttribute("money", numberFormat.format(money));
         }else {
             url = "LecturersView/Home.jsp";
         }

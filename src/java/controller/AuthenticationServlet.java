@@ -69,7 +69,11 @@ public abstract class AuthenticationServlet extends HttpServlet {
         if (user != null) {
             doPost(req, resp, user);
         } else {
-            resp.sendRedirect("../login");
+         
+            String url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
+                    + req.getContextPath();
+
+            resp.sendRedirect(url + "/login");
         }
     }
 
@@ -82,7 +86,10 @@ public abstract class AuthenticationServlet extends HttpServlet {
         if (user != null) {
             doGet(req, resp, user);
         } else {
-            resp.sendRedirect("../login");
+            String url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
+                    + req.getContextPath();
+
+            resp.sendRedirect(url + "/login");
         }
 
     }
