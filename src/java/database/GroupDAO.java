@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Course;
 import model.Group;
+import model.Semester;
 
 /**
  *
@@ -68,5 +70,42 @@ public class GroupDAO {
         } catch (Exception e) {
         }
         return groups;
+    }
+    public ArrayList<Group> listCourseRE(String idStudent) {
+        ArrayList<Group> list = new ArrayList<>();
+        String sql = "with t as (\n"
+                + "	select [idCourse],[idSemester]\n"
+                + "	from [dbo].[RE_Course]\n"
+                + ")\n"
+                + "\n"
+                + "select c.idCourse,g.idSemester,s.idStudent,sum(s.[value]*p.[percent]) as total,sum(p.[percent]) as [percent]\n"
+                + "from Course c join Point p on c.idCourse=p.idCourse\n"
+                + "join [Group] g on c.idCourse=g.idCourse\n"
+                + "join Score s on s.idPoint=p.idPoint\n"
+                + "where s.idStudent=? and c.idCourse not in (\n"
+                + "		select [idCourse]\n"
+                + "		from t\n"
+                + "		where [idCourse] = c.idCourse and [idSemester] = g.idSemester\n"
+                + "	)\n"
+                + "group by c.idCourse,g.idSemester,s.idStudent\n"
+                + "having sum(s.[value]*p.[percent])<5 and sum(p.[percent]) >0.9999\n";
+        try {
+            PreparedStatement ps = JDBC.getConnection().prepareCall(sql);
+            ps.setString(1, idStudent);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                CourseDAO courseDAO = new CourseDAO();
+                Course course = courseDAO.selectById(rs.getInt(1));
+                Group group = new Group();
+                group.setCourse(course);
+                SemesterDAO semesterDAO = new SemesterDAO();
+                Semester semester = semesterDAO.selectById(rs.getInt(2));
+                group.setSemester(semester);
+                list.add(group);
+            }
+            
+        } catch (SQLException e) {
+        }
+        return list;
     }
 }

@@ -60,6 +60,10 @@
         <servlet-name>PaymentServlet</servlet-name>
         <servlet-class>controller.onlinepay.PaymentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReCourseServlet</servlet-name>
+        <servlet-class>controller.student.ReCourseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -119,5 +123,9 @@
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/checkPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReCourseServlet</servlet-name>
+        <url-pattern>/student/recourse</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -50,7 +50,7 @@ public class PaymentServlet extends AuthenticationServlet {
                                     PaymentDAO paymentDAO = new PaymentDAO();
                                     int check = paymentDAO.insertPayment(id, user.getId(), money/100);
                                     if(check == 1) System.out.println("Da add giao dich vao data");
-                                    request.getRequestDispatcher("home").forward(request, resp);
+                                    resp.sendRedirect("home");
                                 } else {
                                     resp.getWriter().print("Không thành công");
                                 }

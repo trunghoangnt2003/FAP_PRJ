@@ -59,6 +59,7 @@
                 <li class="list-group-item px-3 border-0"><a href="student/score?idSemester=3">Điểm số</a></li>
                 <li class="list-group-item px-3 border-0"><a href="student/attReport?idSemester=3">Trạng Thái Điểm Danh</a></li>
                 <li class="list-group-item px-3 border-0"><a href="payment">Nạp tiền vào FAP</a></li>
+                <li class="list-group-item px-3 border-0"><a href="student/recourse">Đăng kí học lại</a></li>
 
             </ul>  
         </div>

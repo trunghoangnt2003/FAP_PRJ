@@ -28,16 +28,38 @@ public class CourseDAO {
             PreparedStatement preparedStatement = connection.prepareCall(sql);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 int idCourse = resultSet.getInt(1);
                 String codeCourse = resultSet.getString(2);
                 String nameCourse = resultSet.getString(3);
                 int number = resultSet.getInt(4);
-                course = new Course(idCourse, codeCourse, nameCourse,number);
+                course = new Course(idCourse, codeCourse, nameCourse, number);
             }
             JDBC.closeConnection(connection);
         } catch (Exception e) {
         }
         return course;
+    }
+
+    public int insertCourse(int cou, int ses, int pri) {
+        int result = 0;
+        String sql = "INSERT INTO [dbo].[RE_Course]\n"
+                + "           ([idCourse]\n"
+                + "           ,[idSemester]\n"
+                + "           ,[idPrice])\n"
+                + "     VALUES\n"
+                + "           (?\n"
+                + "           ,?\n"
+                + "           ,?)";
+        try {
+            PreparedStatement ps = JDBC.getConnection().prepareCall(sql);
+            ps.setInt(1, cou);
+            ps.setInt(2, ses);
+
+            ps.setInt(3, pri);
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return result;
     }
 }
